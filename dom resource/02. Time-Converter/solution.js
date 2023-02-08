@@ -3,6 +3,7 @@ function attachEventsListeners() {
     const inputhours = document.getElementById('hours');
     const inputminutes = document.getElementById('minutes');
     const inputseconds = document.getElementById('seconds');
+    console.log(inputdays)
 
     document.getElementById('daysBtn').addEventListener('click', convert);
     document.getElementById('hoursBtn').addEventListener('click', convert);
@@ -14,6 +15,7 @@ function attachEventsListeners() {
         let hours = 0;
         let minutes = 0;
         let seconds = 0;
+        console.log(inputdays.value)
 
         const parent = event.target.parentElement;
 
