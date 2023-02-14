@@ -8,7 +8,8 @@ class CarDealership {
     addCar(model, horsepower, price, mileage) {
         if(!this.#validateModel(model) 
         || !this.#validateHorsepower(horsepower) 
-        || !this.#validatePriceAndMileage(price, mileage)) {
+        || !this.#validatePriceAndMileage(price)
+        || !this.#validatePriceAndMileage(mileage)) {
             throw new TypeError('Invalid input!')
         }
     }
@@ -22,9 +23,6 @@ class CarDealership {
     }
 
     #validatePriceAndMileage(value, value2) {
-        return typeof value == 'number' 
-        && typeof value2 == 'number' 
-        && value >= 0
-        && value2 >= 0;
+        return typeof value == 'number' && value >= 0;
     }
 }   
