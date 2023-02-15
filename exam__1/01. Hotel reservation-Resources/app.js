@@ -25,9 +25,18 @@ function solve() {
         const editDateIn = dateIn;
         const editDateOut = dateOut;
         const editPeople = people;
+        if (typeof(fName) != 'string' || typeof(fName) != 'string' 
+        || typeof(lName) != 'string' || typeof(dateIn) != 'string' 
+        || typeof(dateOut) != 'string' || typeof(people) != 'string'){
+            return;
+        }
         if (fName == '' || lName == '' || dateIn == '' 
         || dateOut == '' 
         || people == ''){
+            return;
+        }
+
+        if (Date.parse(dateIn) >= Date.parse(dateOut)) {
             return;
         }
 
@@ -38,7 +47,7 @@ function solve() {
             <h3>Name: ${fName} ${lName}</h3>
             <p>From date: ${dateIn}</p>
             <p>To date: ${dateOut}</p>
-            <p>For: ${people} people</p>
+            <p>For ${people} people</p>
         </article>
         <button class="edit-btn">Edit</button>
         <button class="continue-btn">Continue</button>`
@@ -66,7 +75,7 @@ function solve() {
                 <h3>Name: ${fName} ${lName}</h3>
                 <p>From date: ${dateIn}</p>
                 <p>To date: ${dateOut}</p>
-                <p>For: ${people} people</p>
+                <p>For ${people} people</p>
             </article>
             <button class="confirm-btn">Confirm</button>
             <button class="cancel-btn">Cancel</button>`
@@ -74,7 +83,7 @@ function solve() {
             element.remove();
             confirmRes.querySelector('.confirm-btn').addEventListener('click', confirm);
             confirmRes.querySelector('.cancel-btn').addEventListener('click', cancel);
-
+            nextBtn.disabled = true;
         }
 
         function confirm() {
