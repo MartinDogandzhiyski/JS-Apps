@@ -1,54 +1,64 @@
-const rentCar = {
-    searchCar(shop, model) {
-        let findModel = [];
-        if (Array.isArray(shop) && typeof model == 'string') {
-            for (let i = 0; i < shop.length; i++) {
-                if (model == shop[i]) {
-                    findModel.push(shop[i]);
-                }
-            }
-            if (findModel.length !== 0) {
-                return `There is ${findModel.length} car of model ${model} in the catalog!`;
-            } else {
-                throw new Error('There are no such models in the catalog!')
-            }
-        } else {
-            throw new Error('Invalid input!')
-        }
+const motorcycleRider = {
+    licenseRestriction(category) {
+      if (category === "AM") {
+        return 'Mopeds with a maximum design speed of 45 km. per hour, engine volume is no more than 50 cubic centimeters, and the minimum age is 16.'
+      } else if (category === "A1") {
+        return 'Motorcycles with engine volume is no more than 125 cubic centimeters, maximum power of 11KW. and the minimum age is 16.'
+      } else if (category === "A2") {
+        return 'Motorcycles with maximum power of 35KW. and the minimum age is 18.'
+      } else if (category === "A") {
+        return 'No motorcycle restrictions, and the minimum age is 24.'
+      } else {
+        throw new Error("Invalid Information!");
+      }
     },
-    calculatePriceOfCar(model, days) {
-        let catalogue = {
-            Volkswagen: 20,
-            Audi: 36,
-            Toyota: 40,
-            BMW: 45,
-            Mercedes: 50
-        };
-
-        if (typeof model == 'string' && Number.isInteger(days)) {
-            if (catalogue.hasOwnProperty(model)) {
-                let cost = catalogue[model] * days;
-                return `You choose ${model} and it will cost $${cost}!`
-            } else {
-                throw new Error('No such model in the catalog!')
-            }
-        } else {
-            throw new Error('Invalid input!')
+    motorcycleShowroom(engineVolume, maximumEngineVolume) {
+      if (!Array.isArray(engineVolume) || typeof maximumEngineVolume !== "number" || engineVolume.length < 1 || maximumEngineVolume < 50) {
+        throw new Error("Invalid Information!");
+      }
+      let availableBikes = [];
+      engineVolume.forEach((engine) => {
+  
+        if (engine <= maximumEngineVolume && engine >= 50) {
+          availableBikes.push(engine);
         }
+      });
+      return `There are ${availableBikes.length} available motorcycles matching your criteria!`;
     },
-    checkBudget(costPerDay, days, budget) {
-        if (!Number.isInteger(costPerDay) || !Number.isInteger(days) || !Number.isInteger(budget)) {
-            throw new Error('Invalid input!');
-        } else {
-            let cost = costPerDay * days;
-            if (cost <= budget) {
-                return `You rent a car!`
-            } else {
-                return 'You need a bigger budget!'
-            }
+    otherSpendings(equipment, consumables, discount) {
+      if (
+        !Array.isArray(equipment) ||
+        !Array.isArray(consumables) ||
+        typeof discount !== "boolean"
+      ) {
+        throw new Error("Invalid Information!");
+      }
+      let totalPrice = 0;
+  
+      equipment.forEach((element) => {
+        if (element === "helmet") {
+          totalPrice += 200
+        } else if (element === "jacked") {
+          totalPrice += 300
         }
+      });
+  
+      consumables.forEach((element) => {
+        if (element === "engine oil") {
+          totalPrice += 70
+        } else if (element === "oil filter") {
+          totalPrice += 30
+        }
+      });
+      if (discount) {
+        totalPrice = totalPrice * 0.9;
+        return `You spend $${totalPrice.toFixed(2)} for equipment and consumables with 10% discount!`
+      } else {
+        return `You spend $${totalPrice.toFixed(2)} for equipment and consumables!`
+      }
+  
     }
-}
+  };
 
 
-module.exports = rentCar;
+module.exports = motorcycleRider;

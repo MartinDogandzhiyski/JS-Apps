@@ -18,7 +18,6 @@ class CarDealership {
             price,
             mileage
         });
-        console.log(this.availableCars);
         return `New car added: ${model} - ${horsepower} HP - ${mileage.toFixed(2)} km - ${price.toFixed(2)}$`;
     }
 
