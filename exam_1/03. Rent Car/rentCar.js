@@ -1,64 +1,44 @@
-const motorcycleRider = {
-    licenseRestriction(category) {
-      if (category === "AM") {
-        return 'Mopeds with a maximum design speed of 45 km. per hour, engine volume is no more than 50 cubic centimeters, and the minimum age is 16.'
-      } else if (category === "A1") {
-        return 'Motorcycles with engine volume is no more than 125 cubic centimeters, maximum power of 11KW. and the minimum age is 16.'
-      } else if (category === "A2") {
-        return 'Motorcycles with maximum power of 35KW. and the minimum age is 18.'
-      } else if (category === "A") {
-        return 'No motorcycle restrictions, and the minimum age is 24.'
-      } else {
-        throw new Error("Invalid Information!");
-      }
-    },
-    motorcycleShowroom(engineVolume, maximumEngineVolume) {
-      if (!Array.isArray(engineVolume) || typeof maximumEngineVolume !== "number" || engineVolume.length < 1 || maximumEngineVolume < 50) {
-        throw new Error("Invalid Information!");
-      }
-      let availableBikes = [];
-      engineVolume.forEach((engine) => {
-  
-        if (engine <= maximumEngineVolume && engine >= 50) {
-          availableBikes.push(engine);
-        }
-      });
-      return `There are ${availableBikes.length} available motorcycles matching your criteria!`;
-    },
-    otherSpendings(equipment, consumables, discount) {
-      if (
-        !Array.isArray(equipment) ||
-        !Array.isArray(consumables) ||
-        typeof discount !== "boolean"
-      ) {
-        throw new Error("Invalid Information!");
-      }
-      let totalPrice = 0;
-  
-      equipment.forEach((element) => {
-        if (element === "helmet") {
-          totalPrice += 200
-        } else if (element === "jacked") {
-          totalPrice += 300
-        }
-      });
-  
-      consumables.forEach((element) => {
-        if (element === "engine oil") {
-          totalPrice += 70
-        } else if (element === "oil filter") {
-          totalPrice += 30
-        }
-      });
-      if (discount) {
-        totalPrice = totalPrice * 0.9;
-        return `You spend $${totalPrice.toFixed(2)} for equipment and consumables with 10% discount!`
-      } else {
-        return `You spend $${totalPrice.toFixed(2)} for equipment and consumables!`
-      }
-  
+const findNewApartment = {
+  isGoodLocation(city, nearPublicTransportation) {
+    if (typeof city !== "string" || typeof nearPublicTransportation !== "boolean"){
+        throw new Error("Invalid input!");
     }
-  };
+    if (city !== "Sofia" && city !== "Plovdiv" && city !== "Varna") {
+        return "This location is not suitable for you.";
+    }else {
+        if (nearPublicTransportation == true) {
+            return "You can go on home tour!";
+        }
+        else {
+            return "There is no public transport in area.";
+        }
+    }
+  },
+  isLargeEnough(apartments, minimalSquareMeters) {
+    let resultArr = [];
+    if (!Array.isArray(apartments) || typeof minimalSquareMeters !== "number" || apartments.length == 0) {
+      throw new Error("Invalid input!");
+    }
+    apartments.map((apartment) => {
+      if (apartment >= minimalSquareMeters) {
+        resultArr.push(apartment);
+      }
+    });
+    return resultArr.join(', ');
+  },
+  isItAffordable(price, budget) {
+    if (typeof price !== "number" || typeof budget !== "number"
+     || price <= 0 || budget <= 0) {
+      throw new Error("Invalid input!");
+    }
+    let result = budget - price;
+    if (result < 0) {
+      return "You don't have enough money for this house!";
+    } else {
+      return "You can afford this home!";
+    }
+  },
+};
 
 
-module.exports = motorcycleRider;
+module.exports = findNewApartment;
