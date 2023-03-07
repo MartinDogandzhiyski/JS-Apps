@@ -16,7 +16,7 @@ function displayAllComments() {
             throw new Error('Error')
         }
         return res.json();
-    }).then( data =>{
+    }).then( data => {
         const textArea = document.querySelector('#messages')
         const allComments = [];
         Object.values(data).forEach(c => allComments.push(`${c.author}: ${c.content}`))
