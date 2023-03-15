@@ -31,7 +31,8 @@ async function requester(method, url, data) {
         alert(error.message);
         throw error;
 
-    }   
+    }
+}
 
 const get = requester.bind(null, 'GET');
 const post = requester.bind(null, 'POST');
