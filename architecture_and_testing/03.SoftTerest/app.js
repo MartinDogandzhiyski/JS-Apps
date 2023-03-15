@@ -19,15 +19,19 @@ async function requester(method, url, data) {
 
     try {
         const res = await fetch(`${host}${url}`, options);
-        if (!res.ok) 
-        if (res.status === 403) {
-            sessionStorage.removeItem('user');
-            throw new Error('Acces denied');
+        if (!res.ok) {
+            if (res.status === 403) {
+                sessionStorage.removeItem('user');
+                throw new Error('Acces denied');
+            }
+            const err = await res.json();
+            throw new Error
         }
-        const err = await res.json();
-        throw new Error
-    }
-}
+    } catch (error) {
+        alert(error.message);
+        throw error;
+
+    }   
 
 const get = requester.bind(null, 'GET');
 const post = requester.bind(null, 'POST');
