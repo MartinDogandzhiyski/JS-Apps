@@ -1,13 +1,13 @@
 import { html } from "../../node_modules/lit-html/lit-html.js";
-import { createOffer, getById } from "../data/offers.js";
+import { editOffer, getById } from "../data/offers.js";
 import { createSubmitHandler } from "../util.js";
 
 
 const editTemplate = (offer, onEdit) => html`
 <section id="edit">
-<div class="form" @submit=${onEdit}>
+<div class="form">
   <h2>Edit Offer</h2>
-  <form class="edit-form">
+  <form class="edit-form @submit=${onEdit}">
     <input
       type="text"
       name="title"
@@ -75,30 +75,28 @@ export async function editPage(ctx) {
             requirements, 
             salary
     }) {
-        console.log('submitted');
-        
-        /*
-        if ([
-            title,
-            imageUrl, 
-            category, 
-            description, 
-            requirements, 
-            salary 
-          ].some(f => f== '')){
-            return alert('All fields are required');
-          }
-
-        await editOffer({
-            title,
-            imageUrl, 
-            category, 
-            description, 
-            requirements, 
-            salary
-    });
-        ctx.page.redirect('/catalog');
-        */
+      if ([
+        title,
+        imageUrl,
+        category,
+        description,
+        requirements,
+        salary
+    ].some(f => f == '')) {
+        return alert('All fields are required!');
     }
-    
+
+    await editOffer(id, {
+        title,
+        imageUrl, 
+        category, 
+        description, 
+        requirements, 
+        salary
+      });
+
+      ctx.page.redirect('/'); 
+  }
 }
+
+        

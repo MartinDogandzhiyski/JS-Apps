@@ -30,7 +30,7 @@ const detailsTemplate = (offer, onDelete) => html`
   </div>
   <p>Applications: <strong id="applications">1</strong></p>
     ${offer.canEdit ? html`<div id="action-buttons">
-    <a href="/catalog/${offer._id}/edit" id="edit-btn">Edit</a>
+    <a href="/details/${offer._id}/edit" id="edit-btn">Edit</a>
     <a @click=${onDelete} href="javascript:void(0)" id="delete-btn">Delete</a>` : null}
   <!--Edit and Delete are only for creator-->
  

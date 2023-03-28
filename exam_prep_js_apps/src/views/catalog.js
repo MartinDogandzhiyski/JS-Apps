@@ -17,7 +17,7 @@ const offerCard = (offer) => html`
   <strong>Title: </strong><span class="title">${offer.title}</span>
 </p>
 <p><strong>Salary:</strong><span class="salary">${offer.salary}</span></p>
-<a class="details-btn" href="/catalog/${offer._id}">Details</a>
+<a class="details-btn" href="/details/${offer._id}">Details</a>
 </div>
 `
 
