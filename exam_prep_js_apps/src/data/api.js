@@ -20,7 +20,7 @@ async function request(method, url, data) {
     }
 
     try {
-        const response = await fetch(host + url, options)
+        const response = await fetch(host + url, options);
         let result;
         if (response.status != 204) {
             result = await response.json();
