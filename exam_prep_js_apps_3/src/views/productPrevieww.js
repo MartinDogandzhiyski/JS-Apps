@@ -7,6 +7,6 @@ export const productPreview = (product) => html`
               ${product.title}
             </p>
             <p><strong>Price:</strong><span class="price">${product.price}</span>$</p>
-            <a class="details-btn" href="">Details</a>
+            <a class="details-btn" href="/details/${product._id}">Details</a>
           </div>
 `

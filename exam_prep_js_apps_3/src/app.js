@@ -8,7 +8,9 @@ import { loginPage } from './views/login.js';
 import { registerPage } from './views/register.js';
 import { productPage } from './views/my-products.js';
 import { logout } from './data/auth.js';
-
+import { createPage } from './views/create.js';
+import { detailsPage } from './views/details.js';
+import { editPage } from './views/edit.js';
 //TODO change render root depending on project html structure
 const root = document.getElementById('wrapper');
 
@@ -19,6 +21,9 @@ page('/login', loginPage);
 page('/register', registerPage);
 page('/logout', logoutAction);
 page('/my-products', productPage);
+page('/create', createPage);
+page('/details/:id', detailsPage);
+page(`/edit/:id`, editPage);
 
 page.start();
 

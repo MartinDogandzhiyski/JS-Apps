@@ -4,15 +4,23 @@ export async function getAllProducts() {
     return get('/data/products?sortBy=_createdOn%20desc');
 }
 
-export async function createBook(book) {
-    return post('/data/books', book)
+export async function createProduct(product) {
+    return post('/data/products', product)
 }
 
 
-export async function getMyBooks(userId) {
+export async function getMyProducts(userId) {
     return get(`/data/books?where=_ownerId%3D%22${userId}%22&sortBy=_createdOn%20desc`)
 }
 
-export async function getBookById(id) {
-    return get(`/data/books/${id}`)
+export async function getProductById(id) {
+    return get(`/data/products/${id}`)
+}
+
+export async function editProduct(id, product) {
+    return put(`/data/products/${id}`, product);
+}
+
+export async function deleteProduct(id) {
+    return del(`/data/products/${id}`)
 }
